@@ -11,6 +11,7 @@ import { RegisterPage } from './pages/auth/RegisterPage';
 
 // Dashboard Pages
 import { EntrepreneurDashboard } from './pages/dashboard/EntrepreneurDashboard';
+import MeetingCalendar from "./components/calendar/MeetingCalendar";
 import { InvestorDashboard } from './pages/dashboard/InvestorDashboard';
 
 // Profile Pages
@@ -38,10 +39,12 @@ function App() {
           {/* Authentication Routes */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+
           
           {/* Dashboard Routes */}
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route path="entrepreneur" element={<EntrepreneurDashboard />} />
+            <Route path="calendar" element={<MeetingCalendar />} />
             <Route path="investor" element={<InvestorDashboard />} />
           </Route>
           
