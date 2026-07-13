@@ -44,7 +44,7 @@ export const ChatPage: React.FC = () => {
    
   const handleStartVideoCall = () => {
   if (!currentUser || !userId) return;
-  const roomId = [currentUser.id, userId].sort().join('-');
+  const roomId = [currentUser._id || currentUser.id, userId].sort().join('-');
   navigate(`/call/${roomId}`);
  };
 
