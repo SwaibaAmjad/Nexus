@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Send, Phone, Video, Info, Smile } from 'lucide-react';
 import { Avatar } from '../../components/ui/Avatar';
 import { Button } from '../../components/ui/Button';
@@ -15,6 +15,7 @@ import { MessageCircle } from 'lucide-react';
 export const ChatPage: React.FC = () => {
   const { userId } = useParams<{ userId: string }>();
   const { user: currentUser } = useAuth();
+  const navigate = useNavigate();
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState('');
   const [conversations, setConversations] = useState<any[]>([]);
@@ -40,7 +41,13 @@ export const ChatPage: React.FC = () => {
     // Scroll to bottom of messages
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
-  
+   
+  const handleStartVideoCall = () => {
+  if (!currentUser || !userId) return;
+  const roomId = [currentUser.id, userId].sort().join('-');
+  navigate(`/call/${roomId}`);
+ };
+
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -102,13 +109,14 @@ export const ChatPage: React.FC = () => {
                 </Button>
                 
                 <Button
-                  variant="ghost"
-                  size="sm"
-                  className="rounded-full p-2"
+                 variant="ghost"
+                 size="sm"
+                 className="rounded-full p-2"
                   aria-label="Video call"
+                 onClick={handleStartVideoCall}
                 >
-                  <Video size={18} />
-                </Button>
+               <Video size={18} />
+               </Button>
                 
                 <Button
                   variant="ghost"
