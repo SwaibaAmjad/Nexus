@@ -8,6 +8,7 @@ const User = require("./models/user");
 const authRoutes = require("./routes/authRoutes");
 const meetingRoutes = require("./routes/meetingRoutes");
 const initSignaling = require("./socket/signaling");
+const documentRoutes = require("./routes/documentRoutes");
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/meetings", meetingRoutes);
+app.use("/api/documents", documentRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend is running 🚀");
