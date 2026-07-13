@@ -64,7 +64,7 @@ export function VideoCallPage() {
 
     const start = async () => {
       try {
-        stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        stream = await navigator.mediaDevices.getUserMedia({ video: false, audio: true });
       } catch (err) {
         console.error("Failed to get media devices:", err);
         alert("Camera/microphone access is required to join the call.");
