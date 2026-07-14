@@ -107,7 +107,7 @@ exports.deleteDocument = async (req, res) => {
       return res.status(403).json({ message: "Not authorized to delete this document" });
     }
 
-    await cloudinary.uploader.destroy(document.publicId, { resource_type: "auto" });
+    await cloudinary.uploader.destroy(document.publicId, { resource_type: "image" });
 
     if (document.signature?.publicId) {
       await cloudinary.uploader.destroy(document.signature.publicId, { resource_type: "image" });
