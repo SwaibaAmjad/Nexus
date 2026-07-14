@@ -39,7 +39,8 @@ export const DocumentsPage: React.FC = () => {
 
   const [signingDoc, setSigningDoc] = useState<DocumentItem | null>(null);
   const sigCanvasRef = React.useRef<SignatureCanvas>(null);
-
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+  
   const fetchDocuments = useCallback(async () => {
     if (!token) return;
     try {
@@ -143,14 +144,22 @@ export const DocumentsPage: React.FC = () => {
           <p className="text-gray-600">Manage your startup's important files</p>
         </div>
 
-        <label>
-          <input type="file" onChange={handleUpload} className="hidden" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg" />
-          <span>
-            <Button leftIcon={<Upload size={18} />} disabled={uploading}>
-              {uploading ? 'Uploading...' : 'Upload Document'}
-            </Button>
-          </span>
-        </label>
+       <>
+     <input
+       ref={fileInputRef}
+       type="file"
+       onChange={handleUpload}
+       className="hidden"
+       accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
+       />
+     <Button
+       leftIcon={<Upload size={18} />}
+       disabled={uploading}
+       onClick={() => fileInputRef.current?.click()}
+       >
+       {uploading ? 'Uploading...' : 'Upload Document'}
+     </Button>
+      </>
       </div>
 
       <Card>
