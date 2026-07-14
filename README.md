@@ -11,7 +11,8 @@ Entrepreneur Profile
 GET /api/auth/me, PUT /api/auth/profile
 Investor Profile
 GET /api/auth/me, PUT /api/auth/profile
-Deals
-GET/POST /api/deals
 Messages / Chat
 GET/POST /api/messages + real-time (Socket.io)
+Documents
+File upload/download API
+
